@@ -56,11 +56,16 @@ the upper height wall moves from 12 Å to 10 Å. In your data the free energy is
 
 ### PLUMED input
 
-- `plumed_nCO.dat`: systems without CO
-- `plumed_wCO.dat`: systems with CO (adds the C–target Cu wall and prints `c_cu`)
+| | Standard arm (`OPES_METAD`) | Explore arm (`OPES_METAD_EXPLORE`) |
+|---|---|---|
+| Systems without CO | `plumed_nCO.dat` | `plumed_nCO_explore.dat` |
+| Systems with CO (adds the C–target Cu wall and prints `c_cu`) | `plumed_wCO.dat` | `plumed_wCO_explore.dat` |
 
-Both are written for the standard arm. For the explore arm, change `OPES_METAD` to `OPES_METAD_EXPLORE`
-on the `opes:` line; nothing else changes. Fill in the `<...>` placeholders from the table below (1-based).
+The standard and explore files differ only on the `opes:` line: the explore files use `OPES_METAD_EXPLORE` and
+have no `EXTRA_BIAS=uwall.bias,lwall.bias`, because `OPES_METAD_EXPLORE` does not support `EXTRA_BIAS` (PLUMED stops
+at startup if it is present). The walls themselves stay active in both arms; without `EXTRA_BIAS` the explore bias
+just does not account for them, so explore walkers may spend somewhat more time at the height walls.
+Fill in the `<...>` placeholders from the table below (1-based).
 
 ### Atom indices (1-based, PLUMED)
 
