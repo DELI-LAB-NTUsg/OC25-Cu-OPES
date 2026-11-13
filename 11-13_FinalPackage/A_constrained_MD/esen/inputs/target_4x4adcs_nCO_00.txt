@@ -1,0 +1,3 @@
+target_ase 45
+target_plumed 46
+top_layer_ase 1 5 9 13 17 21 25 29 33 37 41 45 49 53 57 61
